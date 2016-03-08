@@ -58,3 +58,6 @@ Session session = cluster.connect("demo");
 		}
 		
 		// Clean up the connection by closing it
+		cluster.close();
+	}
+}
