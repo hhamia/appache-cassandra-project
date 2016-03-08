@@ -12,3 +12,23 @@ Après l'avoir installé, vérifiez qu'il est maintenant le JRE par défaut:
 java –version
 Vous devriez voir une sortie similaire à ce qui suit:
  Output java version "1.8.0_60"Java(TM) SE Runtime Environment (build 1.8.0_60-b27)Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
+
+
+
+ Installez les nouvelles mises à jour à l'aide des commandes suivantes 
+sudo apt-get update 
+sudo apt-get upgrade
+Ouverir /etc/apt/sources.list utilisant la commande suivante 
+sudo gedit /etc/apt/sources.list
+Ajouter les ligns suivant 
+deb http://www.apache.org/dist/cassandra/debian 10x main 
+deb-src http://www.apache.org/dist/cassandra/debian 10x main
+Inscrivez-vous et ajouter une touche de clés publiques et de mettre à jour à nouveau, notez que vous devrez peut-être modifier la clé conséquence
+gpg --keyserver wwwkeys.pgp.net --recv-keys 4BD736A82B5C1B00 
+sudo apt-key add ~/.gnupg/pubring.gpg 
+sudo apt-get update
+.      Installez Cassandra utilisant la commande suivante
+sudo apt-get install cassandra
+Commencez serveur Cassandra utilisant la commande suivante
+sudo cassandra -f
+
