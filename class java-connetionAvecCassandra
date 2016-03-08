@@ -11,3 +11,14 @@ Cluster cluster = Cluster.builder()
                   .addContactPoint("localhost")
                   .build();
 Session session = cluster.connect("demo");
+
+// Insert one record into the users table
+		PreparedStatement statement = session.prepare(
+
+		"INSERT INTO users" + "(lastname, age, city, email, firstname)"
+				+ "VALUES (?,?,?,?,?);");
+
+		BoundStatement boundStatement = new BoundStatement(statement);
+
+		session.execute(boundStatement.bind("Jones", 35, "Austin",
+				"bob@example.com", "Bob"));
