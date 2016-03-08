@@ -31,3 +31,16 @@ Session session = cluster.connect("demo");
 			System.out.format("%s %d \n", row.getString("firstname"),
 					row.getInt("age"));
 		}
+		
+		// Update the same user with a new age
+		Statement update = QueryBuilder.update("demo", "users")
+				.with(QueryBuilder.set("age", 36))
+				.where((QueryBuilder.eq("lastname", "Jones")));
+                        session.execute(update);
+// Select and show the change
+		select = QueryBuilder.select().all().from("demo", "users")
+				.where(eq("lastname", "Jones"));
+		results = session.execute(select);
+		for (Row row : results) {
+			System.out.format("%s %d \n", row.getString("firstname"),
+					row.getInt("age"));
