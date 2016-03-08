@@ -36,3 +36,6 @@ CREATE TABLE Persons (
   PRIMARY KEY(familyName));
 SELECT familyNname FROM persone WHERE keyspace_name = 'school';
 
+alter table
+ALTER TABLE Persons ADD phone VARCHAR;
+
