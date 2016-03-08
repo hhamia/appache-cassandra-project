@@ -1,0 +1,13 @@
+public class cassandraConnect {
+
+public static void main(String[] args) {
+
+		Cluster cluster;
+		Session session;
+		ResultSet results;
+		Row rows;
+// Connect to the cluster and keyspace "demo"
+Cluster cluster = Cluster.builder()
+                  .addContactPoint("localhost")
+                  .build();
+Session session = cluster.connect("demo");
