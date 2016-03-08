@@ -1,12 +1,20 @@
 
-*démarrer Apache Cassandra
+//démarrer Apache Cassandra
 service cassandra start
 
-*démarrer opscenterd
+//démarrer opscenterd
 service opscenterd start
-*démarrer datastax-agent
+//démarrer datastax-agent
 service datastax-agent start
 
+
+// cassandra status:
+nodetool status
+//login to cassandra
+cqlsh -u cassandra -p cassandra
+create keyspace school with replication={ 'class' : 'SimpleStrategy', 'replication_factor' : 3 };
+use school;
+//arreter service du cassandra 
 service cassandra stop
 service opscenterd stop
 service datastax-agent stop
