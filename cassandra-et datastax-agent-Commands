@@ -16,5 +16,7 @@ create keyspace school with replication={ 'class' : 'SimpleStrategy', 'replicati
 use school;
 //arreter service du cassandra 
 service cassandra stop
+//arreter service opscenterd 
 service opscenterd stop
+//arreter service du datastax-agent
 service datastax-agent stop
