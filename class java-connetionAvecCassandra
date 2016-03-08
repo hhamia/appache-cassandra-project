@@ -56,3 +56,5 @@ Session session = cluster.connect("demo");
 					row.getInt("age"), row.getString("city"),
 					row.getString("email"), row.getString("firstname"));
 		}
+		
+		// Clean up the connection by closing it
