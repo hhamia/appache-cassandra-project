@@ -1,8 +1,12 @@
 
-
+*démarrer Apache Cassandra
 service cassandra start
+
+*démarrer opscenterd
 service opscenterd start
+*démarrer datastax-agent
 service datastax-agent start
+
 service cassandra stop
 service opscenterd stop
 service datastax-agent stop
