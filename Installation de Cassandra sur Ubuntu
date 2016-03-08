@@ -1,0 +1,14 @@
+I – Installation
+Étape 1 - Installation de la machine virtuelle Java 
+Pour rendre le package Oracle JRE disponibles, vous devrez ajouter personnelles Archives emballage (PPA) en utilisant cette commande:
+             sudo add-apt-repository ppa:webupd8team/java
+ 
+Mettre à jour la base de données du paquet:
+             sudo apt-get update
+Ensuite, installez le Oracle JRE. L'installation de ce paquet particulier non seulement l'installe mais                         
+aussi rend le JRE par défaut. Lorsque vous êtes invité, acceptez le contrat de licence:
+sudo apt-get install oracle-java8-set-default
+Après l'avoir installé, vérifiez qu'il est maintenant le JRE par défaut:
+java –version
+Vous devriez voir une sortie similaire à ce qui suit:
+ Output java version "1.8.0_60"Java(TM) SE Runtime Environment (build 1.8.0_60-b27)Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
