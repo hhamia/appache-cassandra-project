@@ -25,3 +25,14 @@ AND strategy_options:replication_factor=1;
 
 drop keyspace
 DROP KEYSPACE school;
+
+Nous présentons ci-dessous les commandes de création d'une famille de colonnes dans le cas
+ d'une famille de colonnes statique.
+CREATE TABLE Persons (
+  familyName varchar, 
+  firstName varchar, 
+  age int, 
+  address varchar,
+  PRIMARY KEY(familyName));
+SELECT familyNname FROM persone WHERE keyspace_name = 'school';
+
