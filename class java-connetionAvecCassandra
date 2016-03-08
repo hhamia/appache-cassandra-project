@@ -44,3 +44,15 @@ Session session = cluster.connect("demo");
 		for (Row row : results) {
 			System.out.format("%s %d \n", row.getString("firstname"),
 					row.getInt("age"));
+// Delete the user from the users table
+           Statement delete = QueryBuilder.delete().from("users")
+				.where(QueryBuilder.eq("lastname", "Jones"));
+		results = session.execute(delete);
+		// Show that the user is gone
+           select = QueryBuilder.select().all().from("demo", "users");
+		results = session.execute(select);
+		for (Row row : results) {
+			System.out.format("%s %d %s %s %s\n", row.getString("lastname"),
+					row.getInt("age"), row.getString("city"),
+					row.getString("email"), row.getString("firstname"));
+		}
