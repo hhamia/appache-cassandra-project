@@ -47,3 +47,7 @@ USE cassandrademocql;
 INSERT INTO Persons (familyName, firstName, age, address,phone) 
 VALUES ('mark', 'Mickael', 55, 'Poitiers', '35');
 
+
+enlever un enregistrement 
+DELETE FROM Persons WHERE familyname='BARON';
+
