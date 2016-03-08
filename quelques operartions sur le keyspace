@@ -3,13 +3,25 @@ un KEYSPACE regroupe tout un ensemble de familles de colonnes
 Ci-dessous, nous créons un KEYSPACE appelé cassandrademocli 
 ou cassandrademocql via la commande CREATE KEYSPACE, en utilisant la stratégie de 
 placement 'SimpleStrategy' et un facteur de réplication à 1.
+
 create keyspace
 CREATE KEYSPACE school WITH placement_strategy = 'SimpleStrategy' 
 AND strategy_options = {replication_factor:1};
+
+
 -utilisation keyspace
+
 USE school;
 //L'interrogation permet d'obtenir la liste des KEYSPACE disponibles d'une base de données Cassandra.
 SHOW keyspaces;
 
 update keyspace
 UPDATE KEYSPACE school WITH strategy_options = {replication_factor:2};
+
+
+alter keyspace
+ALTER KEYSPACE school WITH strategy_class=SimpleStrategy 
+AND strategy_options:replication_factor=1;
+
+drop keyspace
+DROP KEYSPACE school;
