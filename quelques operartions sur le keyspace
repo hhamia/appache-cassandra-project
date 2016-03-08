@@ -39,3 +39,11 @@ SELECT familyNname FROM persone WHERE keyspace_name = 'school';
 alter table
 ALTER TABLE Persons ADD phone VARCHAR;
 
+drop table
+DROP COLUMNFAMILY Persons;
+
+insertinto 
+USE cassandrademocql;
+INSERT INTO Persons (familyName, firstName, age, address,phone) 
+VALUES ('mark', 'Mickael', 55, 'Poitiers', '35');
+
