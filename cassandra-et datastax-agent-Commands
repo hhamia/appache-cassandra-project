@@ -1,0 +1,8 @@
+
+
+service cassandra start
+service opscenterd start
+service datastax-agent start
+service cassandra stop
+service opscenterd stop
+service datastax-agent stop
