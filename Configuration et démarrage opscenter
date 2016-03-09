@@ -30,3 +30,5 @@ Démarrage :
 L'ordre de démarrage des machines est important, sinon le serveur de supervision risque de ne pas pouvoir contacter correctement les machines du cluster.
 
 1 - Suppression des anciens keyspace :
+
+rm -rf /var/lib/cassandra/*
