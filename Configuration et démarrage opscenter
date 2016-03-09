@@ -24,3 +24,9 @@ Ajout de l'utilisateur cassandra au groupe sudo :
 apt-get install sudo
 passwd cassandra "votre mot de passe"
 adduser cassandra sudo
+
+Démarrage :
+
+L'ordre de démarrage des machines est important, sinon le serveur de supervision risque de ne pas pouvoir contacter correctement les machines du cluster.
+
+1 - Suppression des anciens keyspace :
