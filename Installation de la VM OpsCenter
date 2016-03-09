@@ -1,0 +1,14 @@
+1.1 - Configuration de la VM
+
+Paramètres VM :
+
+- 2 CPU
+- 2 Go RAM
+- 20 Go DD
+Config Réseau :
+
+- host : ops-center-srv
+- IP : 192.168.0.100
+- masque : 255.255.255.0
+- passerelle : 192.168.0.254
+- dns : 192.168.0.1
