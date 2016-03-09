@@ -1,0 +1,4 @@
+final String createMovieCql =  
+     "CREATE TABLE movies_keyspace.movies (title varchar, year int, description varchar, "  
+   + "mmpa_rating varchar, dustin_rating varchar, PRIMARY KEY (title, year))";  
+client.getSession().execute(createMovieCql);  
