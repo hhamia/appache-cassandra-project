@@ -57,3 +57,24 @@ Vérifier que le cluster répond :
 
 nodetool -h 192.168.0.251 -u cassandra -pw qqq status
 
+2.2 - Installation du Datastax Agent
+
+Ajout du repository :
+
+nano /etc/apt/sources.list.d/datastax.community.list
+
+Ajouter :
+
+deb http://debian.datastax.com/community stable main
+
+Ajout de la clé du repository :
+
+curl -L https://debian.datastax.com/debian/repo_key | sudo apt-key add -
+
+Installation du packet :
+
+
+apt-get update
+apt-get install datastax-agent
+
+
