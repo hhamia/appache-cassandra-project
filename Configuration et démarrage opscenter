@@ -38,3 +38,9 @@ rm -rf /var/lib/cassandra/*
 service cassandra start
 service datastax-agent start
 
+3 - Ajout du cluster dans OpsCenter.
+
+4 - Démarrage de cassandra et du datastax agent sur les autres noeuds du cluster.
+
+5 - Création du keyspace demo (exemple pour l'installation du cluster, cf tutorial installation d'un cluster Cassandra).
+
