@@ -1,0 +1,15 @@
+2.3 - Configuration et démarrage
+
+Editer le fichier /var/lib/datastax-agent/conf/address.yaml :
+
+nano /var/lib/datastax-agent/conf/address.yaml
+
+Ajouter :
+
+stomp_interface: 192.168.0.100 thrift_user: cassandra thrift_pass: "votre mot de passe"
+
+Edition du fichier cassandra.yaml :
+
+nano /etc/cassandra/cassandra.yaml
+
+Modifier la directive suivante :
