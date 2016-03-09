@@ -1,0 +1,23 @@
+2 - Configuration des noeuds du cluster
+
+On va réaliser les opérations suivantes sur chaque noeud du cluster.
+
+2.1 - Activation de l'authentification JMX :
+
+nano /etc/cassandra/cassandra-env.sh
+
+Modifier :
+
+LOCAL_JMX=no
+
+Copier le fichier jmxremote.password.template dans le dossier de config de Cassandra :
+
+cp /usr/lib/jvm/java-8-oracle/jre/lib/management/jmxremote.password.template /etc/cassandra/jmxremote.password
+
+Affectation des droits et permissions :
+
+chown cassandra:cassandra /etc/cassandra/jmxremote.password chmod 400 /etc/cassandra/jmxremote.password
+
+Edition du fichier password :
+
+nano /etc/cassandra/jmxremote.password
