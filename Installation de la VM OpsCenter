@@ -22,3 +22,27 @@ echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | te
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
 apt-get update
 apt-get install oracle-java8-installer
+
+1.3 - Installation d'OpsCenter
+
+Ajout du repository :
+
+nano /etc/apt/sources.list.d/datastax.community.list
+
+Ajouter :
+
+deb http://debian.datastax.com/community stable main
+
+Ajout de la clé du repository :
+
+curl -L https://debian.datastax.com/debian/repo_key | sudo apt-key add -
+
+Installation :
+
+apt-get update apt-get install opscenter
+
+Démarrage :
+
+service opscenterd start
+
+On se connectera plus tard l'interface de gestion une fois les agents déployés.
