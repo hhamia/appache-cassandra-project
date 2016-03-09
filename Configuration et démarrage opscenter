@@ -32,3 +32,9 @@ L'ordre de démarrage des machines est important, sinon le serveur de supervisio
 1 - Suppression des anciens keyspace :
 
 rm -rf /var/lib/cassandra/*
+
+2 - Démarrage de Cassandra et du Datastax agent sur le serveur seed du cluster.
+
+service cassandra start
+service datastax-agent start
+
