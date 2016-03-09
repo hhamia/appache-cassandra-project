@@ -44,3 +44,9 @@ service datastax-agent start
 
 5 - Création du keyspace demo (exemple pour l'installation du cluster, cf tutorial installation d'un cluster Cassandra).
 
+3 - Interface d'administation
+
+Connectez-vous via votre navigateur à l'adresse : http://ops-center-srv.fresh.local:8888.
+
+Ajouter un nouveau cluster en ajoutant les ip des noeuds Cassandra.
+
