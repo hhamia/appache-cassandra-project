@@ -1,12 +1,14 @@
-plan du mon projet cassandra
-I. introduction au no sql 
-II. origin et concept du cassandra
-III. principales cararecteristiques
-IV. Les cas d'utilisation de Cassandra
-V. Installation et configuration 
-VI. operation sur les keyspace est sur les table dans cassandra
-VII. l'indexation dans cassandra 
-VIII. L'accès aux données dans Cassandra
-IX. communication entre les neouds dans cassandra
-X. example pratique sur cassandra
-XI. conclusion
+plan du mon projet  Appache cassandra
+Introduction au base de données NOSQL
+ I.Origin et concept du cassandra
+II.Principales caractéristiques 
+III.Architecture cassandra
+ IV. Les cas d'utilisation de Cassandra
+V.L'indexation dans cassandra 
+VI.L'accès aux données 
+VII.Communication entre les neouds dans cassandra
+VIII.Installation et configuration 
+XI.Opération sur les keyspace est sur les table dans cassandra
+Conclusion 
+Example pratique sur cassandra
+
