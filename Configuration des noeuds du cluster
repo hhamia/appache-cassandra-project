@@ -47,3 +47,13 @@ nano /etc/cassandra/cassandra-env.sh
 # add this if you're having trouble connecting:
 JVM_OPTS="$JVM_OPTS -Djava.rmi.server.hostname="
 
+Remplacer <public name>, par l'ip du noeud.
+
+Redémarrage de Cassandra :
+
+service cassandra restart
+
+Vérifier que le cluster répond :
+
+nodetool -h 192.168.0.251 -u cassandra -pw qqq status
+
