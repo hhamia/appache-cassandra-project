@@ -21,3 +21,29 @@ chown cassandra:cassandra /etc/cassandra/jmxremote.password chmod 400 /etc/cassa
 Edition du fichier password :
 
 nano /etc/cassandra/jmxremote.password
+
+Ajouter en fin de fichier le nom d'utilisateur et mot de passe et décommenter monitorRole et controlRole :
+
+monitorRole QED controlRole R&D cassandra "votre mot de passe"
+
+Edition du fichier jmxremote.access :
+
+nano /usr/lib/jvm/java-8-oracle/jre/lib/management/jmxremote.access
+
+Remplacer les directives existantes et ajouter les nouvelles :
+
+
+monitorRole readonly
+cassandra readwrite
+controlRole readwrite \
+create javax.management.monitor.*,javax.management.timer.* \
+unregister
+
+Décommenter la ligne suivante du fichier cassandra-env.sh:
+
+nano /etc/cassandra/cassandra-env.sh
+
+
+# add this if you're having trouble connecting:
+JVM_OPTS="$JVM_OPTS -Djava.rmi.server.hostname="
+
