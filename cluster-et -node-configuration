@@ -1,0 +1,13 @@
+//ouvrir le fichier cassandra.yaml par le command suivant
+nano ~/cassandra/conf/cassandra.yaml
+//configuration du cluster
+
+cluster_name: 'Name'  //nom du cluster
+initial_token: Token // nombre du node
+seed_provider:
+    - seeds:  "Seed IP"  // ip du cluster
+listen_address: Droplet's IP
+rpc_address: 0.0.0.0
+endpoint_snitch: RackInferringSnitch  //Dans cassandra.yaml, on active le endpoint_snitch qui nous permet d’utiliser le fichier cassandra-rackdc.properties 
+
+
