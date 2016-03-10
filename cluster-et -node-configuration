@@ -10,4 +10,23 @@ listen_address: Droplet's IP
 rpc_address: 0.0.0.0
 endpoint_snitch: RackInferringSnitch  //Dans cassandra.yaml, on active le endpoint_snitch qui nous permet d’utiliser le fichier cassandra-rackdc.properties 
 
+//configuration du node
+Node 0
+cluster_name: 'MyDigitalOceanCluster'
+initial_token: 0
+seed_provider:
+    - seeds:  "198.211.xxx.0"
+listen_address: 198.211.xxx.0
+rpc_address: 0.0.0.0
+endpoint_snitch: RackInferringSnitch
+
+Node 1
+cluster_name: 'MyDigitalOceanCluster'
+initial_token: 3074457345618258602
+seed_provider:
+    - seeds:  "198.211.xxx.0"
+listen_address: 192.241.xxx.0
+rpc_address: 0.0.0.0
+endpoint_snitch: RackInferringSnitch
+
 
