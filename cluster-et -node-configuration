@@ -30,3 +30,7 @@ rpc_address: 0.0.0.0
 endpoint_snitch: RackInferringSnitch
 
 
+pour que le cluster fonctionne on faire le commande suivant
+sudo sh ~/cassandra/bin/cassandra
+
+
