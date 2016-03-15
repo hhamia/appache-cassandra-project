@@ -35,3 +35,36 @@ les données ainsi marquées seront complètement purgées et l'espace disque co
 Voir DistributedDeletes pour plus de détails.
 
 
+5-Pourquoi l’anneau nodetool n’affiche qu’une seule entrée, alors que mes nœuds ont écrit, dans les fichiers de trace (logs), qu’ils ont vu les autres nœuds rejoindre l’anneau ?
+
+
+Cela arrive quand vous avez le même jeton (token) affecté à chaque nœud. Il ne faut pas faire cela.
+Le plus souvent, ce problème arrive aux personnes qui installent Cassandra sur une VM (particulièrement
+quand on utilise un package Debian qui s’auto-exécute après l’installation, ce qui génère et sauvegarde un jeton). 
+Ensuite, si on clone cette VM pour créer les autres nœuds, cela copie aussi le jeton.
+
+La meilleure solution est d'effacer les répertoires de données et de « commitlog », 
+ce qui assure que chaque nœud générera un jeton aléatoire au prochain redémarrage.
+
+6- Puis-je changer le ReplicationFactor sur un cluster qui tourne ?
+
+
+Oui, mais cela nécessite de faire tourner une réparation pour modifier le nombre de copies des données existantes.
+
+    Modifier le ReplicationFactor à la valeur désirée à l’aide de cassandra-cli.
+
+
+Si vous réduisez le ReplicationFactor :
+
+    exécutez "nodetool cleanup" pour supprimer les données répliquées de façon surnuméraire. Le nettoyage s'exécute sur une base nœud par nœud.
+
+
+Si vous augmentez le ReplicationFactor :
+
+    exécutez "nodetool repair" pour lancer une réparation antientropie sur le cluster.
+    La réparation fonctionne sur une base par réplique. Il s'agit d'un processus 
+    intensif qui peut entraîner une baisse des performances du cluster. Il est fortement
+    recommandé de faire une réparation progressive, car une tentative de réparer tout le cluster d’un 
+    seul coup a toutes les chances de le saturer complètement.
+
+
