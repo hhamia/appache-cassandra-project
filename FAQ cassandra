@@ -87,4 +87,65 @@ le l’option JVM –Djava.rmi.server.hostname = <nompublic> près du bas du cas
 Utilisez un client CQL ([ClientOptions]) et Cassandra 2.0. La version 2.0 supporte les curseurs, ce qui signifie que vous pouvez juste écrire "SELECT * FROM toto" et vous pourrez itérer de façon automatique sur le curseur résultat.
 Sinon, vous pouvez utiliser HadoopSupport.
 
+9- Est-ce qu’il y a une interface administrateur graphique pour Cassandra ?
+
+
+    DataStax Opscenter, un outil de gestion et de suivi pour Cassandra avec une interface utilisateur en mode Web.
+    Cassandra Cluster Admin, une interface utilisateur en mode Web utilisant PHP.
+    Toad for Cloud Databases, un client bureautique, avec un plugin Eclipse qui supporte Cassandra.
+    DBeaver, un client bureautique supporté par Cassandra qui utilise le driver JDBC.
+     
+     
+     
+ 10-Cassandra indique "ClusterName mismatch: oldClusterName != newClusterName" et refuse de démarrer
+
+
+
+Pour prévenir des erreurs d’utilisateurs, Cassandra stocke le nom du cluster dans ses tables système. Si vous avez besoin de renommer un cluster pour une raison quelconque, vous pouvez effectuer les étapes suivantes pour chaque nœud :
+
+    Exécuter le cassandra-cli en se connectant localement au nœud ;
+    Exécuter ce qui suit :
+        use system,
+        set LocationInfo[utf8('L')][utf8('ClusterName')]=utf8('<new cluster name>'),
+        exit;
+    Exécuter nodetool flush sur ce nœud ;
+    Mettre à jour le champ cluster_name dans le fichier cassandra.yaml (le même nom qu’en 2b ci-dessus) ;
+    Redémarrer le nœud.
+
+
+Une fois que tous les nœuds ont subi cette opération et ont été redémarrés, le nodetool ring devrait afficher
+que tous les nœuds sont prêts.
+
+ 11-Un cluster Cassandra peut-il héberger plusieurs applications ?
+
+
+Les utilisateurs de Cassandra utilisent pour la plupart un cluster pour chaque application ou chaque ensemble lié d'applications, cette architecture est plus simple à configurer et à maintenir. Des travaux ont été réalisés pour permettre de faire tourner plusieurs applications différentes, comme du scheduling et de l’authentification.
+Pour plus d'informations, voir MultiTenant. Toutefois, le meilleur choix est certainement 
+une seule application (ou un seul groupe d’applications liées) par cluster.
+
+ 12-Pourquoi la commande "top" rapporte-t-elle que Cassandra utilise plus de mémoire que la taille mémoire maximale de la JVM ?
+
+
+
+Cassandra utilise mmap pour faire des lectures sans copie. Autrement dit, nous utilisons 
+un système de mémoire virtuelle du système d’exploitation pour mapper les fichiers de données stable 
+dans l’espace d’adressage de Cassandra. Cela va « utiliser » la mémoire virtuelle, c’est-à-dire l’espace
+d’adressage, et sera signalé par des outils comme top en conséquence. Mais sur des systèmes 64 bits, 
+l’espace d’adressage virtuel est de facto virtuellement illimité, de sorte que vous n’avez aucune
+raison de vous soucier de cela.
+
+Ce qui importe du point de vue de l’utilisation réelle de la mémoire, au sens courant,
+c’est la quantité de données allouées sur brk() ou mmap’d/dev/zero, qui représente 
+la mémoire réelle utilisée. Le point essentiel est que pour un fichier mmap’d, 
+il n’est jamais nécessaire de garder les données résidantes dans la mémoire physique. Ainsi, quelles 
+que soient les données que vous gardiez résidantes dans la mémoire physique, il s’agit seulement d’une 
+sorte de cache, de la même manière que des entrées/sorties amèneront le cache du noyau à garder les données 
+que vous lisez ou écrivez.
+
+La différence entre les entrées/sorties ordinaires et mmap(), c’est que la mémoire est 
+réellement mappée sur le processus, ce qui affecte la taille virtuelle mesurée par des outils comme top. 
+La principale raison de l’utilisation de mmap() au lieu des entrées/sorties standard est le fait que 
+la lecture implique un simple accès en mémoire. Si la page réside en mémoire, il suffit de la lire, 
+aucun besoin de faire une demande de page au noyau (donc pas besoin d’entrer dans le noyau et de faire 
+un semi-changement de contexte). Cette question est abordée plus en détail ici.
 
