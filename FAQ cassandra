@@ -66,5 +66,25 @@ Si vous augmentez le ReplicationFactor :
     intensif qui peut entraîner une baisse des performances du cluster. Il est fortement
     recommandé de faire une réparation progressive, car une tentative de réparer tout le cluster d’un 
     seul coup a toutes les chances de le saturer complètement.
+   
+   
+   7-Nodetool indique "Connection refused to host: 127.0.1.1" pour tout hôte distant. Que se passe-t-il ?
+
+
+Nodetool s’appuie sur JMX, qui repose lui-même sur RMI (API Java de réseau),
+lequel à son tour met en place ses propres auditeurs (listeners) et les 
+connecteurs selon les besoins à chaque extrémité de l’échange. Normalement, tout cela se passe de manière
+transparente, mais des erreurs de résolution de nom pour l’hôte demandant 
+la connexion ou celui la recevant, peuvent entraîner des confusions et des exceptions incompréhensibles.
+Si vous n’utilisez pas de DNS, assurez-vous que vos fichiers /etc/hosts sont
+corrects aux deux extrémités de la connexion. Si cela échoue, essayez de régler 
+le l’option JVM –Djava.rmi.server.hostname = <nompublic> près du bas du cassandra-env.sh,
+à une interface que vous pouvez atteindre à partir de la machine distante.
+
+ 8-Comment parcourir toutes les lignes d'une ColumnFamily ?
+
+
+Utilisez un client CQL ([ClientOptions]) et Cassandra 2.0. La version 2.0 supporte les curseurs, ce qui signifie que vous pouvez juste écrire "SELECT * FROM toto" et vous pourrez itérer de façon automatique sur le curseur résultat.
+Sinon, vous pouvez utiliser HadoopSupport.
 
 
