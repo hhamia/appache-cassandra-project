@@ -1,0 +1,37 @@
+1- Pourquoi ne puis-je pas demander à Cassandra de se mettre en écoute sur l’adresse 0.0.0.0 (toutes mes adresses) ?
+
+Cassandra est un système distribué NoSQL et open source (développé à l'origine par Facebook et devenu depuis un proje
+t de la Fondation Apache) fondé sur un mécanisme de « propagation de rumeurs de proche en proche » (gossip architecture). La ListenAddress est aussi l’adresse « mon adresse de contact », c’est-à-dire l’adresse qu’un nœud donne aux autres nœuds pour 
+le contacter. Dire aux autres nœuds « contactez-moi sur n'importe laquelle de mes adresses » est une mauvaise idée 
+; si différents nœuds du cluster choisissent différentes adresses pour vous contacter, toutes sortes de problèmes se produisent…
+Si vous ne voulez pas configurer manuellement une adresse IP d’écoute pour chaque nœud dans votre cluster
+(ce que l’on peut comprendre !), laissez-la à blanc et Cassandra utilisera la fonction InetAddress.getLocalHost() 
+pour choisir une adresse. Ensuite, c’est à vous ou à votre équipe d’admin/exploitants de faire en sorte que les adresses 
+soient traduites correctement (/etc/hosts/, dns, etc.).
+
+ 2-Que se passe-t-il pour les données existant dans mon cluster quand j’ajoute de nouveaux nœuds ?
+
+
+Quand un nouveau nœud rejoint un cluster, il va contacter
+automatiquement les autres nœuds du cluster et copier les données voulues vers lui-même.
+
+3- Quels sont les ports utilisés par Cassandra ?
+
+
+Par défaut, Cassandra utilise le port 7000 pour la communication cluster (7001 si le SSL est activé),
+9160 pour les clients et 7199 pour JMX. L’interconnexion de la communication et les
+Thrift ports sont configurables dans cassandra.yaml, et le port JMX est configurable 
+dans cassandra-env.sh (options JVM). Tous ces ports sont TCP.
+
+
+4- J’efface des données de Cassandra, mais l'utilisation du disque reste la même. Pourquoi ?
+
+Les données que vous écrivez dans Cassandra sont persistantes dans les SSTables. 
+Comme les SSTables sont persistantes, les données ne peuvent pas réellement être 
+supprimées lorsque vous effectuez une suppression ; au lieu de cela, un marqueur 
+(appelé tombstone, ou « pierre tombale ») est positionné pour indiquer le nouveau statut.
+N’ayez crainte, dès que le premier compactage aura lieu entre les données et la pierre tombale, 
+les données ainsi marquées seront complètement purgées et l'espace disque correspondant récupéré.
+Voir DistributedDeletes pour plus de détails.
+
+
