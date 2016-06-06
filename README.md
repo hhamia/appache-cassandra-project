@@ -1,3 +1,8 @@
+nom edutiant: hamza omar hamia
+numero dossier :7566f
+sujet du projet :appache cassandra
+
+
 # appache-cassandra-project
 plan du mon projet cassandra
 I. introduction au no sql 
